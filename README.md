@@ -65,8 +65,11 @@ if (r) {
 Use `Result<void>` for operations that only report success/failure.
 
 ```bash
-Result<void> initialize(bool ok) {
-    if (ok) return Ok();
+Result<void> initialize() {
+    if(m_initialized) {
+        return Ok();
+    }
+
     return Err("init failed");
 }
 
