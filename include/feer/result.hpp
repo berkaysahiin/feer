@@ -39,6 +39,11 @@ template <>
 class Result<void>;
 
 /**
+ * @brief Constructs a successful Result<void>.
+ */
+[[nodiscard]] Result<void> Ok();
+
+/**
  * @brief Result container for success value `T` or `Err`.
  *
  * @tparam T Success type.
@@ -289,5 +294,9 @@ public:
 private:
     std::variant<std::monostate, Err> m_state;
 };
+
+inline Result<void> Ok() {
+    return Result<void>{};
+}
 
 }  // namespace feer

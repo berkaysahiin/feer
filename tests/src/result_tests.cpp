@@ -28,6 +28,13 @@ feer::Result<int> always_err() {
     return feer::Err{"nope"};
 }
 
+feer::Result<void> init_with_ok_helper(bool ok) {
+    if (ok) {
+        return feer::Ok();
+    }
+    return feer::Err{"init failed"};
+}
+
 }  // namespace
 
 using namespace feer;
@@ -177,6 +184,15 @@ TEST_CASE("Result<void> supports ok and err states") {
         Result<void> result;
         CHECK_THROWS_AS(static_cast<void>(result.error()), std::bad_variant_access);
     }
+}
+
+TEST_CASE("Ok helper constructs Result<void> success") {
+    auto ok_result = init_with_ok_helper(true);
+    auto err_result = init_with_ok_helper(false);
+
+    CHECK(ok_result.is_ok());
+    CHECK(err_result.is_err());
+    CHECK(err_result.error().message == "init failed");
 }
 
 TEST_CASE("Result<void> match supports both branches") {

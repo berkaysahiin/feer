@@ -2,7 +2,11 @@
 
 Small Rust-like `Result` for C++20.
 
+Header-only library: include `feer/result.hpp` and use it directly.
+
 ## Look & Feel
+
+Basic success/error flow with explicit branching.
 
 ```cpp
 #include <feer/result.hpp>
@@ -19,11 +23,21 @@ if (auto r = parse_port(input)) {
 } else {
     log_error(r.error().message);
 }
+
+if (auto r = parse_port(input)) {
+    use_port(r.value());
+} else {
+    log_error(r.error().message);
+}
 ```
+
+Provide fallback values with `value_or`.
 
 ```cpp
 int port = parse_port(input).value_or(3000);
 ```
+
+Use `match` when you want both branches in one expression.
 
 ```cpp
 int port = parse_port(input).match(
@@ -37,6 +51,8 @@ int port = parse_port(input).match(
 );
 ```
 
+Carry and mutate references.
+
 ```cpp
 int counter = 10;
 Result<int&> r = counter;
@@ -46,16 +62,17 @@ if (r) {
 }
 ```
 
-## Build
+Use `Result<void>` for operations that only report success/failure.
 
 ```bash
-./scripts/build.sh
-./scripts/build_w_test.sh
-```
+Result<void> initialize(bool ok) {
+    if (ok) return Ok();
+    return Err("init failed");
+}
 
-Optional build directory:
-
-```bash
-./scripts/build.sh out
-./scripts/build_w_test.sh out
+if (auto r = initialize(true)) {
+    start_runtime();
+} else {
+    log_error(r.error().message);
+}
 ```
