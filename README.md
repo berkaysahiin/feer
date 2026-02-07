@@ -4,6 +4,16 @@ Small Rust-like `Result` for C++20.
 
 Header-only library: include `feer/result.hpp` and use it directly.
 
+For C++20 module users, `import feer.result;` is also supported.
+
+```cpp
+// Header path
+#include <feer/result.hpp>
+
+// C++20 module 
+import feer.result;
+```
+
 ## Look & Feel
 
 Basic success/error flow with explicit branching.
