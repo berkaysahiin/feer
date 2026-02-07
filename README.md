@@ -65,15 +65,15 @@ if (r) {
 Use `Result<void>` for operations that only report success/failure.
 
 ```bash
-Result<void> initialize() {
+Result<void> foo() {
     if(m_initialized) {
         return Ok();
     }
 
-    return Err("init failed");
+    return Err("Object is not initialized");
 }
 
-if (auto r = initialize(true)) {
+if (auto r = foo()) {
     start_runtime();
 } else {
     log_error(r.error().message);
