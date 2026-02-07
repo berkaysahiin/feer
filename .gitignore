@@ -58,3 +58,6 @@ Thumbs.db
 
 # Local assistant context docs
 /LLMs/
+
+# Local planning notes
+/todo.list
