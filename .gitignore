@@ -1,0 +1,60 @@
+# Build dirs
+/build/
+/build-*/
+/out/
+/cmake-build-*/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+DartConfiguration.tcl
+Makefile
+compile_commands.json
+install_manifest.txt
+
+# CTest / testing artifacts
+Testing/
+LastTest.log
+
+# Ninja
+.ninja_deps
+.ninja_log
+build.ninja
+.ninja*
+
+# FetchContent / deps (if generated outside build dir)
+_deps/
+
+# Object and binary artifacts
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.dll
+*.dylib
+*.exe
+*.out
+*.pdb
+
+# Coverage / profiling
+*.gcno
+*.gcda
+*.profraw
+*.profdata
+coverage/
+htmlcov/
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local assistant context docs
+/LLMs/
